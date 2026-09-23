@@ -356,6 +356,7 @@ The gradient mesh occupies the upper third of the page; the white canvas below i
 | 0 | Flat | Default surface |
 | 1 | `box-shadow: rgba(0,55,112,0.08) 0 1px 3px` | Card lift on white |
 | 2 | `box-shadow: rgba(0,55,112,0.08) 0 8px 24px, rgba(0,55,112,0.04) 0 2px 6px` | Floating panels, dashboard mockup chrome |
+| Float | `box-shadow: rgba(50,50,93,0.25) 0 13px 27px -5px, rgba(0,0,0,0.3) 0 8px 16px -8px` | **Signature "Stripe shadow"** — pronounced float on pricing/feature cards (stripe.com/pricing 实测). Token `--shadow-float`, card `elevation="float"`, paired with 8px radius. |
 | 3 | Gradient mesh backdrop | The brand's primary depth medium — atmospheric color rather than literal shadow |
 
 ### Decorative Depth
@@ -418,7 +419,7 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 ### Navigation
 
 **`nav-bar-on-mesh`** — top nav floating over the gradient hero.
-- Background `{colors.canvas}` (or transparent depending on scroll), text `{colors.ink}`, padding `{spacing.lg} {spacing.xl}`. Logo wordmark on the left, primary nav center, sign-in + filled `button-primary-pill` on the right.
+- Background `{colors.canvas}` (or transparent depending on scroll), text `{colors.ink}`, padding `{spacing.lg} {spacing.xl}`. Logo wordmark on the left, primary nav center, ghost "Sign in" + filled primary CTA on the right — both **4px rounded** (`{rounded.xs}`), not pill (stripe.com 首页 nav 实测 4px + `#533afd`).
 
 ### Pills, Tags, and Chips
 
@@ -458,6 +459,12 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 
 **`nav-dropdown`** — top-nav mega-menu trigger.
 - Primary nav items (Products, Solutions, Developers, Resources) carry a trailing chevron and open a panel on hover/focus. Trigger label uses `{typography.button-sm}` in `{colors.ink}`; the expanded panel is a `{colors.canvas}` surface with Level 2 shadow, `{rounded.md}` corners, and grouped link columns. Pricing is a plain link with no chevron.
+
+**`case-study-tile`** — vibrant full-bleed customer-story tile (stripe.com/customers 实测).
+- Large `{rounded.lg}` tile filled with a saturated diagonal gradient drawn from the mesh stops (mint-green, sherbet-orange, ruby-pink, lavender-indigo — each tile a different hue). Customer logo top-left in white/knockout, a white/near-white headline anchored bottom-left in `{typography.heading-lg}`, generous padding (~`{spacing.xxl}`). No border, no shadow — the color block itself is the surface. Laid out in a 2-col responsive grid. Distinct from the quiet white `pricing`/`float` cards: these are the loud, editorial storytelling surface.
+
+**`elevated-media-card`** — floating product/screenshot card (stripe.com/pricing 实测).
+- White surface, `{rounded.md}` 8px corners, the signature **Float shadow** (`--shadow-float`, card `elevation="float"`). Used for pricing plan cards and floating product screenshots that sit over the mesh; the pronounced shadow lifts them off the atmospheric background where the subtle Level 1/2 shadows would disappear.
 
 ## Do's and Don'ts
 

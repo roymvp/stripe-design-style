@@ -2,6 +2,20 @@
 
 状态：验收候选，尚未保存 skill，未创建 GitHub 仓库或正式 v0 设计系统。
 
+## 子页面实测补充（stripe.com/pricing、/payments）
+
+- **招牌高投影（Stripe shadow）**：`/pricing` 定价卡实测 `rgba(50,50,93,0.25) 0 13px 27px -5px, rgba(0,0,0,0.3) 0 8px 16px -8px` + 8px 圆角。此前规范缺该形态（只有柔和 panel 投影）。已补 `--shadow-float` token + card `elevation="float"` + DESIGN.md Elevation 表。
+- **两套按钮辨析**：`/payments` 顶部导航出现 16.5px 全圆胶囊、色 `#9966ff`（随产品主题变），但**首页（当前规范基准）nav 与 hero 全部为 4px + `#533afd`**。结论：胶囊是旧产品营销头模板，非当前基准，维持 4px 修正不回退。
+- **次级按钮**：首页实测 `#533afd` 文字 + `#d6d9fc` 柔和描边 + 4px，与上一轮修正一致。
+- **代码块**：产品页代码用等宽 `SourceCodePro`，无背景填充/圆角（透明内联）。
+
+### stripe.com/customers 补充
+
+- **彩色渐变案例瓦片（case-study-tile）**：「Customers by use case」用整块饱和渐变瓦片（薄荷绿/橙/粉/靛，每块一色）+ 白色 logo 与白色标题，无描边无投影，色块本身即表面。此前规范无此组件，已补 `case-study-tile`。
+- **elevated-media-card**：定价卡/浮动截图卡用 8px 圆角 + Float 投影，已补该组件条目（对应 `elevation="float"`）。
+- **nav 遗留矛盾修正**：DESIGN.md 第 422 行 nav 仍写 `button-primary-pill`，与 4px 修正冲突，已改为 4px ghost + filled。
+- 已覆盖无需改动：`logo-cloud`（灰度 logo 墙）、`stat-band`（`$70M/6 months faster/10%/12 new countries` 指标带）规范已存在且与实测一致。
+
 ## 唯一视觉来源
 
 - https://getdesign.md/stripe/design-md 是索引与使用说明，没有第二套更详细的规范。
@@ -55,12 +69,12 @@
 - 浏览器 axe 实测原 ink-mute 在 canvas-soft 上为 4.49:1、原 primary-deep 在 subdued 标签底上为 4.23:1，低于 4.5:1。原 20 个色值全部保留；语义 muted-foreground 改映射到同源 ink-mute-2，accent-foreground 改映射到同源 primary-press。这是明确的可访问性修正，不声称完全照抄有缺陷的配对。
 - Tailwind 使用 `@theme static` 保留所有公开 CSS 变量。逐区截图发现 `@theme inline` 会将只在动态 style 中引用的字号变量裁剪，导致标注 56px 的样例实际只有 16px；改为静态导出并浏览器逐项核对全部 15 个角色，而不仅仅比对源码。
 - 修复 tailwind-merge 对自定义 text-button-md 等字号的误判：它原本把字号当成文字颜色，合并时删掉反白色。包内 cn 扩展 15 个字号角色，并加入可执行回归断言。
-- 渐变表面的透明度按断点降低，避免窄屏文案覆盖饱和蓝色后失去对比；原始图片和调色 token 不变。
+- 渐变表面的透明度按断点降低，避免窄屏文案覆盖饱和蓝色��失去对比；原始图片和调色 token 不变。
 - 动效 160ms ease 是工程默认，原文未定义；reduced-motion 覆盖。导航受控，支持 Escape、失焦、链接跳转关闭。
 - 标签及页脚文案由原 10/13px 提至 14px 便于中文阅读；原 tokens 不改。描边 Badge、ghost/link 按钮为文档操作补充。
 - 渐变图为依据原规范独立生成的新资产，不是官方素材；1920×1920 WebP，27,662 bytes。原 PNG 在非公开 source 目录作为制作记录，不通过页面加载。
 - 原文并未给出“sherbet orange / lavender”的精确独立色值，只提供已记录的 stops。未编造额外原始色 token。渐变图片天然含连续色值。
-- 产品组合用可访问 DOM 而不是静态截图；按屏宽隐藏次要面板��比复制不可读的小图更适合 starter。没有虚构客户背书、交易事实或真实支付能力。
+- 产品组合用可访问 DOM 而不是静态截图；按屏宽隐藏次��面板��比复制不可读的小图更适合 starter。没有虚构客户背书、交易事实或真实支付能力。
 - 所有演示状态只存 React 临时 state，不使用 localStorage；这不是业务应用，不需要数据库或 Stripe 支付集成。
 - 展示页作为内部验收 surface 使用 noindex；没有扩展 SEO 页面。
 
@@ -75,7 +89,7 @@
 | H1 | 48px / 行高 55.2px(1.15) / 字距 -0.96px | display-xl 完全相同 | 一致 |
 | H2 | 32px / 1.1 / -0.64px、H3 26px | display-lg / md 相同 | 一致 |
 | 主色 / 链接色 | `#533afd` | `#533afd` | 一致 |
-| 引导段正文 | 32px / 300 / `#64748d` | ink-mute `#64748d` | 一致 |
+| 引导��正文 | 32px / 300 / `#64748d` | ink-mute `#64748d` | 一致 |
 | 标准正文 & 标题墨色 | `#061b31` | `#0d253d` | **改** → `--stripe-ink: #061b31` |
 | **按钮圆角** | **4px 圆角矩形**（Get started / Contact sales / Sign in 全部 4px） | pill 9999px | **改** → 按钮 `rounded-xs`；规范去 pill 描述 |
 | 按钮字号 | 14px / 400 / padding ~11.5–14.5px × 20–24px | button-md 16px / pill padding 8×16 | **改** → `button-sm` + `12px 20px` |
