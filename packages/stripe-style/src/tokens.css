@@ -20,6 +20,7 @@
   --color-accent-foreground: var(--stripe-primary-press);
   --color-border: var(--stripe-hairline);
   --color-input: var(--stripe-hairline-input);
+  --color-primary-border: var(--stripe-primary-border-soft);
   --color-ring: var(--stripe-primary);
   --color-destructive: var(--stripe-ink-secondary);
   --color-navy: var(--stripe-brand-dark-900);
@@ -115,7 +116,8 @@
   --stripe-primary-soft: #665efd;
   --stripe-primary-bg-subdued-hover: #b9b9f9;
   --stripe-brand-dark-900: #1c1e54;
-  --stripe-ink: #0d253d;
+  --stripe-ink: #061b31;
+  --stripe-primary-border-soft: #d6d9fc;
   --stripe-ink-secondary: #273951;
   --stripe-ink-mute: #64748d;
   --stripe-ink-mute-2: #61718a;

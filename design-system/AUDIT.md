@@ -60,9 +60,33 @@
 - 标签及页脚文案由原 10/13px 提至 14px 便于中文阅读；原 tokens 不改。描边 Badge、ghost/link 按钮为文档操作补充。
 - 渐变图为依据原规范独立生成的新资产，不是官方素材；1920×1920 WebP，27,662 bytes。原 PNG 在非公开 source 目录作为制作记录，不通过页面加载。
 - 原文并未给出“sherbet orange / lavender”的精确独立色值，只提供已记录的 stops。未编造额外原始色 token。渐变图片天然含连续色值。
-- 产品组合用可访问 DOM 而不是静态截图；按屏宽隐藏次要面板，比复制不可读的小图更适合 starter。没有虚构客户背书、交易事实或真实支付能力。
+- 产品组合用可访问 DOM 而不是静态截图；按屏宽隐藏次要面板��比复制不可读的小图更适合 starter。没有虚构客户背书、交易事实或真实支付能力。
 - 所有演示状态只存 React 临时 state，不使用 localStorage；这不是业务应用，不需要数据库或 Stripe 支付集成。
 - 展示页作为内部验收 surface 使用 noindex；没有扩展 SEO 页面。
+
+## 与官方 stripe.com 的实测对比（2026-09，agent-browser 抓取 getComputedStyle）
+
+原文 alpha 分析并非官方设计系统。本轮直接打开 https://stripe.com/ 抓取真实计算样式并逐项比对，凡不一致以官方为准修正。
+
+| 维度 | 官方实测 | 修正前 | 处理 |
+|---|---|---|---|
+| 字体族 | `sohne-var, "SF Pro Display", sans-serif` | 同 | 一致，无需改 |
+| 展示字重 | 300 | 300 | 一致 |
+| H1 | 48px / 行高 55.2px(1.15) / 字距 -0.96px | display-xl 完全相同 | 一致 |
+| H2 | 32px / 1.1 / -0.64px、H3 26px | display-lg / md 相同 | 一致 |
+| 主色 / 链接色 | `#533afd` | `#533afd` | 一致 |
+| 引导段正文 | 32px / 300 / `#64748d` | ink-mute `#64748d` | 一致 |
+| 标准正文 & 标题墨色 | `#061b31` | `#0d253d` | **改** → `--stripe-ink: #061b31` |
+| **按钮圆角** | **4px 圆角矩形**（Get started / Contact sales / Sign in 全部 4px） | pill 9999px | **改** → 按钮 `rounded-xs`；规范去 pill 描述 |
+| 按钮字号 | 14px / 400 / padding ~11.5–14.5px × 20–24px | button-md 16px / pill padding 8×16 | **改** → `button-sm` + `12px 20px` |
+| 次级按钮描边 | 1px 柔和浅靛 `#d6d9fc` | 全饱和 `primary` | **改** → 新增 `primary-border-soft` 并应用 |
+| eyebrow 眉标 | 14px / 400 / 句首大写 / `#061b31` | 无对应形态（micro-cap 是 10px 全大写） | **补** → 新增 `eyebrow-label` 规范 |
+| 主导航 | Products/Solutions/Developers/Resources 带 chevron 展开面板 | 仅链接 + 移动端折叠 | **补** → 新增 `nav-dropdown` 规范 |
+| 客户 logo 带 | hero 下单行原生 logo 平铺、无卡片 | 未记录 | **补** → 新增 `logo-cloud` 规范 |
+| 数字证明带 | `$1.9T / 99.999% / 200M+` 超大 tnum 数字 + 灰标签 | 未记录 | **补** → 新增 `stat-band` 规范 |
+| 两段式标题 | 深色首句 + `#64748d` 续句同一标题 | 未记录 | **补** → 新增 `heading-two-tone` 规范 |
+
+修正落地文件：`packages/stripe-style/src/tokens.css`（ink、新增 primary-border-soft/`--color-primary-border`）、`packages/stripe-style/src/button.tsx`（rounded-xs、柔和描边）、`design-system/source/DESIGN.md`（按钮定义、关键特征、禁忌、触控、新增 6 项组件规范）。badge 的小圆点状态标签仍保留 pill——官方产品 UI 的状态 chip 确实是 pill，仅营销按钮不是。
 
 ## 资产、包与 starter
 

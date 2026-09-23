@@ -9,8 +9,9 @@ colors:
   primary-press: "#2e2b8c"
   primary-soft: "#665efd"
   primary-bg-subdued-hover: "#b9b9f9"
+  primary-border-soft: "#d6d9fc"
   brand-dark-900: "#1c1e54"
-  ink: "#0d253d"
+  ink: "#061b31"
   ink-secondary: "#273951"
   ink-mute: "#64748d"
   ink-mute-2: "#61718a"
@@ -151,30 +152,31 @@ spacing:
   huge: 64px
 
 components:
-  button-primary-pill:
+  button-primary:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
-  button-primary-pill-pressed:
+    typography: "{typography.button-sm}"
+    rounded: "{rounded.xs}"
+    padding: 12px 20px
+  button-primary-pressed:
     backgroundColor: "{colors.primary-press}"
     textColor: "{colors.on-primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
+    typography: "{typography.button-sm}"
+    rounded: "{rounded.xs}"
+    padding: 12px 20px
   button-secondary:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
+    borderColor: "{colors.primary-border-soft}"
+    typography: "{typography.button-sm}"
+    rounded: "{rounded.xs}"
+    padding: 12px 20px
   button-on-dark:
     backgroundColor: "{colors.brand-dark-900}"
     textColor: "{colors.on-primary}"
-    typography: "{typography.button-md}"
-    rounded: "{rounded.pill}"
-    padding: 8px 16px
+    typography: "{typography.button-sm}"
+    rounded: "{rounded.xs}"
+    padding: 12px 20px
   text-input:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
@@ -257,7 +259,9 @@ Typography is built around **Sohne** at weight 300 with negative letter-spacing 
 - Sohne thin (weight 300) display tier with negative tracking from -1.4px to -0.2px depending on size.
 - Tabular-figure body type (`tnum`) for any cell containing money or numerics — the brand's quiet financial-data signal.
 - Dark-app dashboard track: deep navy product UI mockups sit composited above the white canvas, frequently with rendered code or dashboard tables inside.
-- Pill-shaped buttons (`{rounded.pill}` 9999px) with tight `8px 16px` padding — short, decisive, transactional.
+- Tight-radius rounded-rectangle buttons (`{rounded.xs}` 4px) with `12px 20px` padding — short, decisive, transactional. (Verified against live stripe.com: buttons are 4px rounded rectangles, **not** pills — the legacy pill shape has been retired.)
+- Two-tone display headings: the opening clause renders in `{colors.ink}` deep navy, the continuation clause in `{colors.ink-mute}` `#64748d` — a single headline that fades from statement to elaboration.
+- Sentence-case eyebrow labels at `{typography.button-sm}` (14px / weight 400) in `{colors.ink}` — Stripe does **not** use all-caps tracked-out eyebrows on marketing heroes.
 - Cream-band feature cards (`{colors.canvas-cream}`) introduce a warm interlude between blue/white sections without breaking the brand's chromatic logic.
 
 ## Colors
@@ -377,12 +381,13 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 
 ### Buttons
 
-**`button-primary-pill`** — the dominant CTA system-wide.
-- Background `{colors.primary}`, text `{colors.on-primary}`, type `{typography.button-md}`, padding `{spacing.sm} {spacing.lg}` (8px 16px), rounded `{rounded.pill}` 9999px.
-- Pressed state `button-primary-pill-pressed` shifts background to `{colors.primary-press}`.
+**`button-primary`** — the dominant CTA system-wide.
+- Background `{colors.primary}`, text `{colors.on-primary}`, type `{typography.button-sm}` (14px / weight 400), padding `12px 20px`, rounded `{rounded.xs}` 4px.
+- Pressed state `button-primary-pressed` shifts background to `{colors.primary-press}`.
+- **Live-verified:** stripe.com renders every button (Get started, Contact sales, Sign in) at a 4px radius. The pill shape documented in earlier revisions is legacy and has been corrected here.
 
 **`button-secondary`** — outline-style alternative.
-- Background `{colors.canvas}`, text `{colors.primary}`, 1px solid `{colors.primary}` border, same pill geometry.
+- Background `{colors.canvas}`, text `{colors.primary}`, 1px solid `{colors.primary-border-soft}` (`#d6d9fc`, a pale desaturated indigo — **not** full-strength primary) border, same 4px geometry.
 
 **`button-on-dark`** — used on dashboard / dark surfaces.
 - Background `{colors.brand-dark-900}`, text `{colors.on-primary}`, same pill geometry.
@@ -434,6 +439,26 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 **`footer-light`** — site-wide footer.
 - Background `{colors.canvas}`, text `{colors.ink-mute}`, type `{typography.caption}`, padding `{spacing.huge} {spacing.xl}` (64px 24px). Holds 4–6 columns of link groups, social icons, and a small legal row.
 
+### Newly Documented (Live-Verified on stripe.com)
+
+**`heading-two-tone`** — the signature marketing headline.
+- A single display heading (`{typography.display-xl}` / `display-xxl`) whose opening clause is `{colors.ink}` and whose continuation clause is `{colors.ink-mute}` (`#64748d`). Render as one element with an inline `<span>` carrying the muted color. Weight stays 300 throughout.
+
+**`lead-muted`** — the hero / section lead paragraph.
+- Large-scale body lead at ~32px, weight 300, color `{colors.ink-mute}` (`#64748d`), line-height ~1.1, negative tracking. Sits directly under a `heading-two-tone`; the muted color intentionally reads quieter than the headline's dark clause.
+
+**`eyebrow-label`** — small contextual label above a headline (e.g. "Global GDP running on Stripe:").
+- `{typography.button-sm}` (14px / weight 400), sentence case, color `{colors.ink}`, often paired with a muted trailing value. **Not** all-caps and **not** letter-tracked — the brand avoids the conventional uppercase eyebrow.
+
+**`logo-cloud`** — customer wordmark strip beneath the hero.
+- A single horizontal row of monochrome/native customer logos on `{colors.canvas}`, evenly distributed with generous gaps, vertically centered, each capped to a consistent optical height. No card, no border — logos float directly on the canvas.
+
+**`stat-band`** — large numeric proof band.
+- 2–4 oversized figures (e.g. `$1.9T`, `99.999%`, `200M+`) rendered at display scale in `{colors.ink}` with `font-feature-settings: "tnum"`, each above a muted `{typography.caption}` label. Frequently set over a soft radial-tinted `{colors.canvas-soft}` background.
+
+**`nav-dropdown`** — top-nav mega-menu trigger.
+- Primary nav items (Products, Solutions, Developers, Resources) carry a trailing chevron and open a panel on hover/focus. Trigger label uses `{typography.button-sm}` in `{colors.ink}`; the expanded panel is a `{colors.canvas}` surface with Level 2 shadow, `{rounded.md}` corners, and grouped link columns. Pricing is a plain link with no chevron.
+
 ## Do's and Don'ts
 
 ### Do
@@ -448,9 +473,10 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 - Don't bump display weight above 300 — at 400 the brand's editorial air collapses.
 - Don't add new accent colors outside the documented gradient stops (cream / orange / lavender / indigo / ruby / magenta).
 - Don't use the indigo `{colors.primary}` as a body-text color — it's a CTA and link color, not a type color at body size.
-- Don't shrink button padding below `8px 16px` — the tight pill is part of the brand's transactional feel.
+- Don't shrink button padding below `12px 20px` — the compact-but-legible hit area is part of the brand's transactional feel.
 - Don't render money cells without `tnum` — it breaks the quiet financial-data signature.
-- Don't replace the pill shape with rounded-rectangles for buttons.
+- Don't use full-pill (9999px) buttons — current stripe.com uses 4px rounded rectangles. Reserve pill shapes for small status chips only.
+- Don't set the secondary-button border to full-strength `{colors.primary}` — the live border is the pale `{colors.primary-border-soft}`.
 
 ## Responsive Behavior
 
@@ -464,7 +490,7 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 | Mobile | < 768px | Pricing 1-up; hamburger nav; display drops 56 → 36px |
 
 ### Touch Targets
-- Pill buttons hit ≥ 40×40px on mobile via padding scaling. On smaller screens, buttons size up to 44×44px to maintain WCAG AAA.
+- Buttons hit ≥ 40×40px on mobile via padding scaling. On smaller screens, buttons size up to 44×44px to maintain WCAG AAA.
 - Form fields stay at 40px minimum height.
 
 ### Collapsing Strategy
