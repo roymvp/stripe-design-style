@@ -419,7 +419,7 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 ### Navigation
 
 **`nav-bar-on-mesh`** — top nav floating over the gradient hero.
-- Background `{colors.canvas}` (or transparent depending on scroll), text `{colors.ink}`, padding `{spacing.lg} {spacing.xl}`. Logo wordmark on the left, primary nav center, sign-in + filled `button-primary-pill` on the right.
+- Background `{colors.canvas}` (or transparent depending on scroll), text `{colors.ink}`, padding `{spacing.lg} {spacing.xl}`. Logo wordmark on the left, primary nav center, ghost "Sign in" + filled primary CTA on the right — both **4px rounded** (`{rounded.xs}`), not pill (stripe.com 首页 nav 实测 4px + `#533afd`).
 
 ### Pills, Tags, and Chips
 
@@ -459,6 +459,12 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 
 **`nav-dropdown`** — top-nav mega-menu trigger.
 - Primary nav items (Products, Solutions, Developers, Resources) carry a trailing chevron and open a panel on hover/focus. Trigger label uses `{typography.button-sm}` in `{colors.ink}`; the expanded panel is a `{colors.canvas}` surface with Level 2 shadow, `{rounded.md}` corners, and grouped link columns. Pricing is a plain link with no chevron.
+
+**`case-study-tile`** — vibrant full-bleed customer-story tile (stripe.com/customers 实测).
+- Large `{rounded.lg}` tile filled with a saturated diagonal gradient drawn from the mesh stops (mint-green, sherbet-orange, ruby-pink, lavender-indigo — each tile a different hue). Customer logo top-left in white/knockout, a white/near-white headline anchored bottom-left in `{typography.heading-lg}`, generous padding (~`{spacing.xxl}`). No border, no shadow — the color block itself is the surface. Laid out in a 2-col responsive grid. Distinct from the quiet white `pricing`/`float` cards: these are the loud, editorial storytelling surface.
+
+**`elevated-media-card`** — floating product/screenshot card (stripe.com/pricing 实测).
+- White surface, `{rounded.md}` 8px corners, the signature **Float shadow** (`--shadow-float`, card `elevation="float"`). Used for pricing plan cards and floating product screenshots that sit over the mesh; the pronounced shadow lifts them off the atmospheric background where the subtle Level 1/2 shadows would disappear.
 
 ## Do's and Don'ts
 
