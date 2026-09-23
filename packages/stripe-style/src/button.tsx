@@ -16,6 +16,7 @@ const buttonVariants = cva(
         dark: 'bg-navy text-on-navy hover:bg-primary-press active:bg-primary-press',
         ghost: 'text-foreground hover:bg-secondary',
         link: 'text-primary hover:underline underline-offset-4',
+        danger: 'bg-destructive text-destructive-foreground hover:brightness-95 active:brightness-90',
       },
       size: {
         default: 'min-h-11 md:min-h-10 text-button-sm px-5 py-2 gap-2',

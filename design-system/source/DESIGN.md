@@ -294,7 +294,20 @@ Typography is built around **Sohne** at weight 300 with negative letter-spacing 
 - **On Primary** (`{colors.on-primary}` — `#ffffff`): Text on indigo / dark-navy surfaces.
 
 ### Semantic
-The brand does not use a separate semantic color palette in the marketing system — error / success states live in dashboard-product UI specifically.
+The marketing surface leans on the brand indigo and neutrals, but product-UI (forms, tables, alerts, toasts) needs a full semantic state palette. These values are drawn from Stripe Elements / dashboard product UI and live as `--color-*` tokens.
+
+| Role | Token | Value | Soft bg | On-color |
+|---|---|---|---|---|
+| Danger / error | `{colors.destructive}` | `#df1b41` | `#fdeef1` | `#b3123a` |
+| Success | `{colors.success}` | `#228403` | `#ecfdf3` | `#0e6b1f` |
+| Warning | `{colors.warning}` | `#bb5504` | `#fef4e6` | `#8a3d02` |
+| Info | `{colors.info}` | `#533afd` | `#f0eefe` | `#3d2bb8` |
+
+- Never signal state through color alone — pair with an icon, text, or border treatment (WCAG 1.4.1).
+- Soft-bg variants back alerts/toasts; on-color variants are for text/icons on the soft bg.
+
+### Data Visualization
+Charts and dashboard mockups draw from a sanctioned categorical ramp so product UI stays on-brand: indigo `#635bff` → cyan `#00d4ff` → green `#3ecf8e` → amber `#f5a623` → magenta `#e0219a` → violet `#8b5cf6`. Sequential single-hue ramps derive from the brand indigo. Tokens: `--color-chart-1` … `--color-chart-6`.
 
 ## Typography
 
@@ -373,7 +386,7 @@ The gradient mesh IS the depth system. Implemented as a layered SVG or large bac
 | `{rounded.md}` | 8px | Compact cards, alerts |
 | `{rounded.lg}` | 12px | Pricing cards, feature cards |
 | `{rounded.xl}` | 16px | Dashboard product mockup chrome |
-| `{rounded.pill}` | 9999px | All buttons, tag pills |
+| `{rounded.pill}` | 9999px | Tag pills, chips, avatars, switch tracks — **not** buttons (buttons are 4px) |
 
 ### Photography Geometry
 The brand uses **product UI mockups** more than photography. Dashboard composites render as faux IDE/terminal/dashboard chrome inside `{rounded.lg}` 12px containers with a subtle `box-shadow`. Real photography appears in customer logo strips and the rare case-study card; treated as inset 4:3 with no shadow.
@@ -399,7 +412,7 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 - Background `{colors.canvas}`, padding `{spacing.xxl}`, rounded `{rounded.lg}` 12px, 1px `{colors.hairline}` border, optional Level 1 shadow.
 
 **`card-pricing`** — standard pricing tier.
-- Background `{colors.canvas}`, padding `{spacing.xxl}`, rounded `{rounded.lg}`, 1px `{colors.hairline}` border. Title `{typography.heading-lg}`, price `{typography.display-md}`, body `{typography.body-md}`, CTA pinned bottom as `button-primary-pill`.
+- Background `{colors.canvas}`, padding `{spacing.xxl}`, rounded `{rounded.lg}`, 1px `{colors.hairline}` border. Title `{typography.heading-lg}`, price `{typography.display-md}`, body `{typography.body-md}`, CTA pinned bottom as `button-primary` (4px).
 
 **`card-pricing-featured`** — the inverted dark featured tier.
 - Background `{colors.brand-dark-900}`, text `{colors.on-primary}`, otherwise identical structure to `card-pricing`. The deep-navy fill is the brand's distinctive featured-tier choice.
@@ -465,6 +478,67 @@ The brand uses **product UI mockups** more than photography. Dashboard composite
 
 **`elevated-media-card`** — floating product/screenshot card (stripe.com/pricing 实测).
 - White surface, `{rounded.md}` 8px corners, the signature **Float shadow** (`--shadow-float`, card `elevation="float"`). Used for pricing plan cards and floating product screenshots that sit over the mesh; the pronounced shadow lifts them off the atmospheric background where the subtle Level 1/2 shadows would disappear.
+
+### Form Controls
+Product-UI selection and toggle controls. All share `{colors.primary}` as the checked/active fill, `{rounded.sm}` geometry (except switch track = pill), and a `{colors.primary}` focus ring.
+
+**`checkbox`** — 16px square, `{rounded.xs}`, 1px `{colors.hairline-input}` border unchecked; checked fills `{colors.primary}` with a white check glyph. Indeterminate renders a white dash.
+
+**`radio`** — 16px circle, same border/fill logic; checked shows a centered 6px white dot on `{colors.primary}`.
+
+**`switch`** — 36×20px pill track, `{colors.hairline-strong}` off / `{colors.primary}` on, 16px white thumb that translates on toggle. Motion `{motion.control}` 150ms.
+
+**`select`** — trigger matches `text-input` geometry (6px radius, hairline border, `{colors.primary}` focus border) with a trailing chevron; popup is a `{colors.canvas}` surface, `{rounded.md}`, Level 2 shadow, items highlight on `{colors.secondary}`.
+
+### Feedback & Overlays
+**`tooltip`** — dark `{colors.brand-dark-900}` surface, `{colors.on-primary}` text, `{typography.caption}`, `{rounded.sm}`, 6px/8px padding, 300ms open delay. For terse hints only.
+
+**`popover`** — `{colors.canvas}` surface, `{rounded.md}`, Level 2 shadow, ~16px padding. Holds richer interactive content; may carry a title + description + close.
+
+**`dialog` / modal** — centered `{colors.canvas}` panel, `{rounded.lg}` 12px, Float shadow, backdrop `rgba(10,20,40,0.4)`. Header (title + description) / body / footer (actions right-aligned, primary last). Destructive confirmations use the `danger` button variant.
+
+**`alert`** — inline banner, `{rounded.md}`, soft semantic bg + on-color text/icon (`info` / `success` / `warning` / `danger`). Icon left, title + description stacked. Never color-only — icon and text carry the meaning too.
+
+**`toast`** — transient `{colors.canvas}` card, `{rounded.md}`, Level 2 shadow, semantic left accent, auto-dismiss with a close affordance. Stacks bottom-right.
+
+### Data & Navigation
+**`table`** — product data table. Header row `{typography.caption}` in `{colors.ink-mute}` on `{colors.canvas-soft}`, body `{typography.body-tabular}` with `tnum` for numeric columns, 1px `{colors.hairline}` row dividers, row hover `{colors.secondary}`. Numeric/currency columns right-aligned.
+
+**`tabs`** — underline style: labels in `{typography.body-md}`, active tab `{colors.ink}` with a 2px `{colors.primary}` bottom indicator, inactive `{colors.ink-mute}`. Panel content below.
+
+**`breadcrumb`** — `{typography.caption}`, `{colors.ink-mute}` links with `{colors.primary}` hover, chevron/slash separators, current page `{colors.ink}` non-interactive.
+
+**`pagination`** — square `{rounded.sm}` page buttons, current page filled `{colors.primary}`, prev/next with chevrons, `{typography.button-sm}`.
+
+**`progress`** — 6px track `{colors.secondary}`, fill `{colors.primary}`, `{rounded.pill}`. Indeterminate variant animates a sliding segment.
+
+**`skeleton`** — `{colors.secondary}` placeholder blocks, `{rounded.sm}`, subtle shimmer at `{motion.slow}`. Mirrors final content geometry.
+
+**`avatar`** — `{rounded.pill}` circle, sizes 24 / 32 / 40px, image or initials on `{colors.secondary}`. Groups overlap with a `{colors.canvas}` ring.
+
+**`accordion`** — `{colors.canvas}` rows divided by 1px `{colors.hairline}`, trigger `{typography.body-md}` in `{colors.ink}` with a rotating chevron, content reveals at `{motion.control}`. Used in FAQ / docs.
+
+## Motion
+
+| Token | Value | Use |
+|---|---|---|
+| `--ds-duration` | 160ms | Toggles, hovers, overlays, tabs — the default transition for all interactive controls |
+| `--ds-duration-slow` | 1200ms | Gradient mesh drift, progress/skeleton shimmer loops |
+| `--ds-ease` | `cubic-bezier(0.2, 0, 0, 1)` | Default easing for state changes |
+| `--ds-ease-emphasized` | `cubic-bezier(0.16, 1, 0.3, 1)` | Overlay enter (dialog / popover / toast) |
+
+- Components apply these via Tailwind arbitrary values, e.g. `duration-[var(--ds-duration)] ease-[var(--ds-ease)]`.
+- Respect `prefers-reduced-motion`: the global rule in `tokens.css` collapses all animation/transition durations and freezes the mesh drift.
+- Motion is restrained and functional; the gradient mesh's slow drift is the only ambient animation.
+
+## Accessibility
+
+- **Contrast**: body text meets WCAG AA (4.5:1); `{colors.ink}` on `{colors.canvas}` and `{colors.on-primary}` on `{colors.primary}` both pass. `{colors.ink-mute}` is for large/secondary text only.
+- **Focus**: every interactive element shows a visible `{colors.primary}` focus ring (2px, 2px offset). Never remove focus outlines without a replacement.
+- **State ≠ color alone**: semantic states pair color with icon/text/border (WCAG 1.4.1).
+- **Touch targets**: interactive controls are ≥44px on touch (buttons use `min-h-11`).
+- **Motion**: honor `prefers-reduced-motion`.
+- **Semantics**: overlays trap focus and restore it on close; form controls carry labels; tables use proper header semantics.
 
 ## Do's and Don'ts
 

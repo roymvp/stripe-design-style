@@ -22,7 +22,26 @@
   --color-input: var(--stripe-hairline-input);
   --color-primary-border: var(--stripe-primary-border-soft);
   --color-ring: var(--stripe-primary);
-  --color-destructive: var(--stripe-ink-secondary);
+  --color-destructive: var(--stripe-danger);
+  --color-destructive-foreground: var(--stripe-danger-fg);
+  --color-destructive-soft: var(--stripe-danger-bg);
+  --color-success: var(--stripe-success);
+  --color-success-foreground: var(--stripe-success-fg);
+  --color-success-soft: var(--stripe-success-bg);
+  --color-warning: var(--stripe-warning);
+  --color-warning-foreground: var(--stripe-warning-fg);
+  --color-warning-soft: var(--stripe-warning-bg);
+  --color-info: var(--stripe-info);
+  --color-info-foreground: var(--stripe-info-fg);
+  --color-info-soft: var(--stripe-info-bg);
+  --color-chart-1: var(--stripe-viz-1);
+  --color-chart-2: var(--stripe-viz-2);
+  --color-chart-3: var(--stripe-viz-3);
+  --color-chart-4: var(--stripe-viz-4);
+  --color-chart-5: var(--stripe-viz-5);
+  --color-chart-6: var(--stripe-viz-6);
+  --color-chart-7: var(--stripe-viz-7);
+  --color-chart-8: var(--stripe-viz-8);
   --color-navy: var(--stripe-brand-dark-900);
   --color-on-navy: var(--stripe-on-primary);
   --color-cream: var(--stripe-canvas-cream);
@@ -133,8 +152,32 @@
   --stripe-magenta: #f96bee;
   --stripe-lemon: #9b6829;
   --stripe-shadow-blue: #003770;
+  /* Semantic status colors — foreground values pass AA on white; soft values are tinted backgrounds (stripe.com实测校准) */
+  --stripe-success: #15be53;
+  --stripe-success-fg: #0a6b34;
+  --stripe-success-bg: #ecfdf3;
+  --stripe-warning: #ff8f0e;
+  --stripe-warning-fg: #93500b;
+  --stripe-warning-bg: #fff5e9;
+  --stripe-danger: #df1b41;
+  --stripe-danger-fg: #b3123a;
+  --stripe-danger-bg: #fdeef1;
+  --stripe-info: #0073e6;
+  --stripe-info-fg: #0055bc;
+  --stripe-info-bg: #eaf3ff;
+  /* Categorical data-visualization palette, anchored on the brand indigo */
+  --stripe-viz-1: #533afd;
+  --stripe-viz-2: #0073e6;
+  --stripe-viz-3: #00b8d4;
+  --stripe-viz-4: #15be53;
+  --stripe-viz-5: #ff8f0e;
+  --stripe-viz-6: #ea2261;
+  --stripe-viz-7: #f96bee;
+  --stripe-viz-8: #7c3aed;
   --ds-duration: 160ms;
+  --ds-duration-slow: 1200ms;
   --ds-ease: cubic-bezier(0.2, 0, 0, 1);
+  --ds-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
