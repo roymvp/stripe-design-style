@@ -356,6 +356,7 @@ The gradient mesh occupies the upper third of the page; the white canvas below i
 | 0 | Flat | Default surface |
 | 1 | `box-shadow: rgba(0,55,112,0.08) 0 1px 3px` | Card lift on white |
 | 2 | `box-shadow: rgba(0,55,112,0.08) 0 8px 24px, rgba(0,55,112,0.04) 0 2px 6px` | Floating panels, dashboard mockup chrome |
+| Float | `box-shadow: rgba(50,50,93,0.25) 0 13px 27px -5px, rgba(0,0,0,0.3) 0 8px 16px -8px` | **Signature "Stripe shadow"** — pronounced float on pricing/feature cards (stripe.com/pricing 实测). Token `--shadow-float`, card `elevation="float"`, paired with 8px radius. |
 | 3 | Gradient mesh backdrop | The brand's primary depth medium — atmospheric color rather than literal shadow |
 
 ### Decorative Depth

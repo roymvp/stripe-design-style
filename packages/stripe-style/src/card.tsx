@@ -11,7 +11,7 @@ const cardVariants = cva('group/card flex min-w-0 flex-col gap-6 rounded-lg p-8 
       cream: 'bg-cream text-foreground',
       dashboard: 'bg-card text-card-foreground shadow-panel p-6',
     },
-    elevation: { flat: '', lift: 'shadow-lift', panel: 'shadow-panel' },
+    elevation: { flat: '', lift: 'shadow-lift', panel: 'shadow-panel', float: 'shadow-float' },
   },
   defaultVariants: { variant: 'default', elevation: 'flat' },
 })

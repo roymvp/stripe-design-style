@@ -45,6 +45,8 @@
   --spacing-huge: 64px;
   --shadow-lift: 0 1px 3px rgb(0 55 112 / 0.08);
   --shadow-panel: 0 8px 24px rgb(0 55 112 / 0.08), 0 2px 6px rgb(0 55 112 / 0.04);
+  /* Signature "Stripe shadow": pronounced float used on pricing/feature cards (stripe.com实测) */
+  --shadow-float: 0 13px 27px -5px rgb(50 50 93 / 0.25), 0 8px 16px -8px rgb(0 0 0 / 0.3);
   --text-display-xxl: 56px;
   --text-display-xxl--line-height: 1.03;
   --text-display-xxl--letter-spacing: -1.4px;

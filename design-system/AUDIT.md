@@ -2,6 +2,13 @@
 
 状态：验收候选，尚未保存 skill，未创建 GitHub 仓库或正式 v0 设计系统。
 
+## 子页面实测补充（stripe.com/pricing、/payments）
+
+- **招牌高投影（Stripe shadow）**：`/pricing` 定价卡实测 `rgba(50,50,93,0.25) 0 13px 27px -5px, rgba(0,0,0,0.3) 0 8px 16px -8px` + 8px 圆角。此前规范缺该形态（只有柔和 panel 投影）。已补 `--shadow-float` token + card `elevation="float"` + DESIGN.md Elevation 表。
+- **两套按钮辨析**：`/payments` 顶部导航出现 16.5px 全圆胶囊、色 `#9966ff`（随产品主题变），但**首页（当前规范基准）nav 与 hero 全部为 4px + `#533afd`**。结论：胶囊是旧产品营销头模板，非当前基准，维持 4px 修正不回退。
+- **次级按钮**：首页实测 `#533afd` 文字 + `#d6d9fc` 柔和描边 + 4px，与上一轮修正一致。
+- **代码块**：产品页代码用等宽 `SourceCodePro`，无背景填充/圆角（透明内联）。
+
 ## 唯一视觉来源
 
 - https://getdesign.md/stripe/design-md 是索引与使用说明，没有第二套更详细的规范。
@@ -60,7 +67,7 @@
 - 标签及页脚文案由原 10/13px 提至 14px 便于中文阅读；原 tokens 不改。描边 Badge、ghost/link 按钮为文档操作补充。
 - 渐变图为依据原规范独立生成的新资产，不是官方素材；1920×1920 WebP，27,662 bytes。原 PNG 在非公开 source 目录作为制作记录，不通过页面加载。
 - 原文并未给出“sherbet orange / lavender”的精确独立色值，只提供已记录的 stops。未编造额外原始色 token。渐变图片天然含连续色值。
-- 产品组合用可访问 DOM 而不是静态截图；按屏宽隐藏次要面板��比复制不可读的小图更适合 starter。没有虚构客户背书、交易事实或真实支付能力。
+- 产品组合用可访问 DOM 而不是静态截图；按屏宽隐藏次��面板��比复制不可读的小图更适合 starter。没有虚构客户背书、交易事实或真实支付能力。
 - 所有演示状态只存 React 临时 state，不使用 localStorage；这不是业务应用，不需要数据库或 Stripe 支付集成。
 - 展示页作为内部验收 surface 使用 noindex；没有扩展 SEO 页面。
 
