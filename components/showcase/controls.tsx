@@ -70,7 +70,6 @@ import {
 import { Section } from './section'
 
 export function FormControlsShowcase() {
-  const [plan, setPlan] = useState('standard')
   return (
     <Section
       id="form-controls"
@@ -103,7 +102,7 @@ export function FormControlsShowcase() {
         </div>
         <div className="flex flex-col gap-5">
           <span className="spec-label">下拉选择 · Select</span>
-          <Select value={plan} onValueChange={setPlan}>
+          <Select defaultValue="standard">
             <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
             <SelectContent>
               <SelectItem value="standard">标准版</SelectItem>
@@ -211,7 +210,7 @@ export function DataNavShowcase() {
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="flex flex-col gap-4">
             <span className="spec-label">折叠面板 · Accordion</span>
-            <Accordion openMultiple={false} defaultValue={['q1']}>
+            <Accordion defaultValue={['q1']}>
               <AccordionItem value="q1"><AccordionTrigger>如何轮换 API 密钥？</AccordionTrigger><AccordionPanel>在开发者设置中生成新密钥，旧密钥可设置宽限期后失效。</AccordionPanel></AccordionItem>
               <AccordionItem value="q2"><AccordionTrigger>支持哪些结算周期？</AccordionTrigger><AccordionPanel>支持按日、按周与按月自动结算。</AccordionPanel></AccordionItem>
             </Accordion>
