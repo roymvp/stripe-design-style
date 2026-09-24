@@ -8,7 +8,7 @@ import { Section } from './section'
 export function ButtonShowcase() {
   const [code, setCode] = useState(false)
   const [message, setMessage] = useState('')
-  return <Section id="buttons" title="按钮与标签" description="胶囊轮廓、简洁标签、明确主次。以下是不同状态的样本，不是同一页面的操作密度。" meta="圆角 9999px · 内边距 8 / 16px">
+  return <Section id="buttons" title="按钮与标签" description="4px 圆角矩形、简洁标签、明确主次。以下是不同状态的样本，不是同一页面的操作密度。" meta="圆角 4px · 内边距 8 / 16px">
     <div className="preview-panel"><div className="flex items-center justify-between border-b border-border px-6 py-3"><span className="text-sm text-muted-foreground">交互样例</span><Button variant="ghost" size="sm" aria-expanded={code} aria-controls="button-code" onClick={() => setCode(!code)}>{code ? <Eye /> : <Code2 />}{code ? '显示预览' : '查看代码'}</Button></div>
       {code ? <pre id="button-code" className="section-code rounded-none" tabIndex={0} aria-label="按钮组件用法"><code>{`import { Button } from '@design-systems/stripe-style'\n\n<Button>创建项目</Button>\n<Button variant="outline">了解详情</Button>\n<Button variant="dark">打开控制台</Button>\n<Button disabled>暂不可用</Button>`}</code></pre> : <div className="grid gap-8 p-8 sm:grid-cols-2 xl:grid-cols-4">
         <div className="flex flex-col items-start gap-4"><Button onClick={() => setMessage('已触发主操作。这是组件演示，不会创建真实项目。')}>创建项目<ArrowRight data-icon="inline-end" /></Button><span className="spec-label">主按钮 · Primary</span></div>
@@ -52,7 +52,7 @@ export function FormShowcase() {
         <Field><FieldLabel htmlFor="state-default">默认状态</FieldLabel><Input id="state-default" placeholder="等待输入内容" /></Field>
         <Field data-disabled><FieldLabel htmlFor="state-disabled">禁用状态</FieldLabel><Input id="state-disabled" disabled value="此字段当前不可编辑" /></Field>
         <Field data-invalid><FieldLabel htmlFor="state-invalid">校验失败样例</FieldLabel><Input id="state-invalid" defaultValue="hello@" aria-invalid aria-describedby="state-error" /><FieldDescription id="state-error">邮箱地址不完整，请补全域名。错误用文字与虚线共同表达。</FieldDescription></Field>
-        <p className="rounded-md bg-secondary px-5 py-4 text-sm leading-relaxed text-muted-foreground">工程补充：原规范没有错误色板，因此不引入新红色；用原有深色、虚线边界与明确文案表达错误。</p>
+        <p className="rounded-md bg-secondary px-5 py-4 text-sm leading-relaxed text-muted-foreground">校验失败同时用文案、虚线边界与语义危险色（<code>--color-destructive</code> #df1b41，取自 Stripe Elements）三重表达，确保不依赖单一颜色通道。</p>
       </div>
     </div>
   </Section>
