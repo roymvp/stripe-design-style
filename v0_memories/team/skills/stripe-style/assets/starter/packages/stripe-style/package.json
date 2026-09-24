@@ -1,0 +1,25 @@
+{
+  "name": "@design-systems/stripe-style",
+  "version": "0.1.0",
+  "description": "独立的 stripe 风格 UI 系统；非官方，仅依据指定 DESIGN.md 实现。",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["src", "assets", "NOTICE"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/tokens.css",
+    "./assets/*": "./assets/*"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
+    "tailwind-merge": "^3.3.1"
+  }
+}
